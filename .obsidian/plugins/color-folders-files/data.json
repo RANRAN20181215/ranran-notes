@@ -1,0 +1,129 @@
+{
+  "styles": {
+    "一年级": {
+      "backgroundColor": "#ffebee",
+      "textColor": "#e53935",
+      "isBold": true,
+      "isItalic": false,
+      "opacity": 1,
+      "applyToSubfolders": true,
+      "applyToFiles": true
+    },
+    "二年级": {
+      "backgroundColor": "#fff3e0",
+      "textColor": "#f57c00",
+      "isBold": true,
+      "isItalic": false,
+      "opacity": 1,
+      "applyToSubfolders": true,
+      "applyToFiles": true
+    },
+    "三年级": {
+      "backgroundColor": "#fff8e1",
+      "textColor": "#fbc02d",
+      "isBold": true,
+      "isItalic": false,
+      "opacity": 1,
+      "applyToSubfolders": true,
+      "applyToFiles": false
+    },
+    "数学": {
+      "backgroundColor": "#e3f2fd",
+      "textColor": "#1565c0",
+      "isBold": true,
+      "isItalic": false,
+      "opacity": 1,
+      "applyToSubfolders": true,
+      "applyToFiles": true
+    },
+    "英语": {
+      "backgroundColor": "#e8f5e9",
+      "textColor": "#2e7d32",
+      "isBold": true,
+      "isItalic": false,
+      "opacity": 1,
+      "applyToSubfolders": true,
+      "applyToFiles": true
+    },
+    "错题本": {
+      "backgroundColor": "#fce4ec",
+      "textColor": "#c62828",
+      "isBold": true,
+      "isItalic": false,
+      "opacity": 1,
+      "applyToSubfolders": false,
+      "applyToFiles": true
+    },
+    "语文": {
+      "backgroundColor": "#fce4ec",
+      "textColor": "#d81b60",
+      "isBold": true,
+      "isItalic": false,
+      "opacity": 1,
+      "applyToSubfolders": true,
+      "applyToFiles": false
+    },
+    "yuwen-note-main": {
+      "backgroundColor": "#f3e5f5",
+      "textColor": "#7b1fa2",
+      "isBold": true,
+      "isItalic": false,
+      "opacity": 1,
+      "applyToSubfolders": false,
+      "applyToFiles": false
+    },
+    "copilot": {
+      "backgroundColor": "#e0f2f1",
+      "textColor": "#00695c",
+      "isBold": false,
+      "isItalic": true,
+      "opacity": 1,
+      "applyToSubfolders": false,
+      "applyToFiles": false
+    }
+  },
+  "presets": {
+    "语文笔记": {
+      "backgroundColor": "#fce4ec",
+      "textColor": "#d81b60",
+      "isBold": true,
+      "isItalic": false,
+      "opacity": 1,
+      "applyToSubfolders": true,
+      "applyToFiles": true
+    },
+    "英语笔记": {
+      "backgroundColor": "#e8f5e9",
+      "textColor": "#2e7d32",
+      "isBold": true,
+      "isItalic": false,
+      "opacity": 1,
+      "applyToSubfolders": false,
+      "applyToFiles": false
+    },
+    "数学笔记": {
+      "backgroundColor": "#e3f2fd",
+      "textColor": "#1565c0",
+      "isBold": true,
+      "isItalic": false,
+      "opacity": 1,
+      "applyToSubfolders": false,
+      "applyToFiles": false
+    },
+    "错题本": {
+      "backgroundColor": "#fce4ec",
+      "textColor": "#c62828",
+      "isBold": true,
+      "isItalic": false,
+      "opacity": 1,
+      "applyToSubfolders": false,
+      "applyToFiles": false
+    }
+  },
+  "presetOrder": [
+    "语文笔记",
+    "英语笔记",
+    "数学笔记",
+    "错题本"
+  ]
+}

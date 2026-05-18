@@ -1,0 +1,768 @@
+/* ============================
+   📜 和风纸张（PLN 覆盖版）
+   日系胶带风 Callout 合并在内
+   ============================ */
+
+/* ----- 全局变量 ----- */
+:root {
+  --bg-paper: #F7F4EA;
+  --bg-sidebar: #2D2C2A;
+  --text-primary: #3C3C3C;
+  --text-sidebar-folder: #E6D5B8;
+  --text-sidebar-file: #CEC2AA;
+  --sidebar-hover: #3E3C38;
+  --border-quote: #D1C3A5;
+  --bg-quote: #FDF9F2;
+  --color-quote-marker: #B85C3A;
+  --color-link: #B85C3A;
+  --color-link-hover: #8C3A1F;
+  --color-h1: #C44B3C;
+  --color-h2: #9B5E3C;
+  --bg-code: #F0EDE3;
+  --text-code: #2C2C2C;
+  --radius-card: 8px;
+  --radius-code: 6px;
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+  --font-text: "LXGW WenKai", "霞鹜文楷", "KaiTi", serif;
+  --font-code: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+}
+
+/* =============================
+   1. 整体背景 & 字体
+   ============================= */
+body {
+  background-color: var(--bg-paper) !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-text) !important;
+}
+
+/* 格子纸背景 — 从 Callout 推广到全局 */
+.markdown-preview-view,
+.markdown-source-view,
+.markdown-reading-view,
+.view-content,
+.workspace-leaf-content {
+  background:
+    linear-gradient(90deg, rgba(180,160,130,0.05) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(180,160,130,0.05) 1px, transparent 1px),
+    var(--bg-paper) !important;
+  background-size: 16px 16px !important;
+  background-position: -1px -1px !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-text) !important;
+}
+
+.markdown-source-view,
+.cm-s-obsidian,
+.cm-content {
+  font-family: var(--font-text) !important;
+}
+
+.cm-s-obsidian .cm-comment,
+.cm-s-obsidian .cm-keyword,
+.cm-s-obsidian .cm-string,
+.cm-s-obsidian .cm-def,
+.cm-s-obsidian .cm-variable,
+.cm-s-obsidian .cm-type,
+.cm-s-obsidian .cm-number,
+.cm-s-obsidian .cm-atom,
+.cm-s-obsidian .HyperMD-codeblock,
+.markdown-preview-view code,
+.markdown-preview-view pre {
+  font-family: var(--font-code) !important;
+}
+
+/* =============================
+   2. 侧边栏
+   ============================= */
+.workspace-split.mod-left-split,
+.workspace-split.mod-right-split,
+.nav-files-container,
+.workspace-leaf,
+.workspace-leaf-content,
+.side-dock-ribbon,
+.side-dock-settings {
+  background-color: var(--bg-sidebar) !important;
+}
+
+.workspace-leaf {
+  border-radius: var(--radius-card) !important;
+}
+
+/* 文件夹 */
+.nav-folder-title {
+  font-weight: bold !important;
+  color: var(--text-sidebar-folder) !important;
+  padding: 7px 14px !important;
+  letter-spacing: 0.8px !important;
+  font-size: 0.95em !important;
+}
+
+/* 文件 */
+.nav-file-title {
+  font-weight: normal !important;
+  color: var(--text-sidebar-file) !important;
+  padding: 5px 14px !important;
+}
+
+.nav-folder-title:hover,
+.nav-file-title:hover {
+  background-color: var(--sidebar-hover) !important;
+  border-radius: 4px !important;
+}
+
+/* 侧边栏顶部标题栏 */
+.workspace-leaf-header,
+.view-header,
+.nav-header {
+  background-color: var(--bg-sidebar) !important;
+}
+
+.workspace-leaf-header-title,
+.view-header-title {
+  color: var(--text-sidebar-folder) !important;
+}
+
+/* =============================
+   3. 标题 · 纸胶带风格
+   ============================= */
+
+/* ---- 预览模式：h1/h2 大纸胶带 ---- */
+.markdown-preview-view.markdown-preview-view h1,
+.markdown-preview-view.markdown-preview-view h2 {
+  display: inline-block !important;
+  padding: 6px 28px 6px 18px !important;
+  margin-left: -10px !important;
+  border-radius: 0 4px 4px 0 !important;
+  transform: rotate(-0.6deg) !important;
+  box-shadow:
+    2px 2px 8px rgba(0,0,0,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.20) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  position: relative !important;
+  border: none !important;
+  text-align: left !important;
+}
+
+/* 三角撕边（右侧） */
+.markdown-preview-view.markdown-preview-view h1::after,
+.markdown-preview-view.markdown-preview-view h2::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: 0;
+  width: 8px;
+  height: 100%;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+/* 齿孔撕边（上边缘） */
+.markdown-preview-view.markdown-preview-view h1::before,
+.markdown-preview-view.markdown-preview-view h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    -2deg,
+    transparent, transparent 2px,
+    rgba(255,255,255,0.12) 2px, rgba(255,255,255,0.12) 4px
+  );
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.markdown-preview-view.markdown-preview-view h1 {
+  font-size: 1.8em !important;
+  background: linear-gradient(135deg, #C44B3C, #a33d30) !important;
+}
+.markdown-preview-view.markdown-preview-view h1::after {
+  background: linear-gradient(135deg, #C44B3C, #a33d30);
+}
+
+.markdown-preview-view.markdown-preview-view h2 {
+  font-size: 1.5em !important;
+  background: linear-gradient(135deg, #9B5E3C, #7a4930) !important;
+}
+.markdown-preview-view.markdown-preview-view h2::after {
+  background: linear-gradient(135deg, #9B5E3C, #7a4930);
+}
+
+/* ---- 预览模式：h3~h6 简约色条 ---- */
+.markdown-preview-view.markdown-preview-view h3,
+.markdown-preview-view.markdown-preview-view h4,
+.markdown-preview-view.markdown-preview-view h5,
+.markdown-preview-view.markdown-preview-view h6 {
+  padding: 4px 0 4px 14px !important;
+  border-left: 4px solid var(--border-quote, #D1C3A5) !important;
+  color: var(--text-primary) !important;
+  position: relative !important;
+}
+.markdown-preview-view.markdown-preview-view h3 { border-left-color: #C44B3C !important; }
+.markdown-preview-view.markdown-preview-view h4 { border-left-color: #9B5E3C !important; }
+.markdown-preview-view.markdown-preview-view h5 { border-left-color: #B85C3A !important; }
+.markdown-preview-view.markdown-preview-view h6 { border-left-color: #D1C3A5 !important; }
+
+/* ---- 源码/实时预览模式：左侧彩条 ---- */
+.cm-header-1,
+.HyperMD-header-1 {
+  color: var(--color-h1) !important;
+  font-size: 1.8em !important;
+  font-weight: 700 !important;
+  border-left: 4px solid var(--color-h1) !important;
+  padding-left: 10px !important;
+}
+.cm-header-2,
+.HyperMD-header-2 {
+  color: var(--color-h2) !important;
+  font-size: 1.5em !important;
+  font-weight: 700 !important;
+  border-left: 4px solid var(--color-h2) !important;
+  padding-left: 10px !important;
+}
+
+/* =============================
+   4. 链接
+   ============================= */
+.markdown-preview-view a,
+.cm-hmd-internal-link,
+.cm-url,
+.cm-link,
+.external-link {
+  color: var(--color-link) !important;
+  text-decoration: none !important;
+}
+
+.markdown-preview-view a:hover,
+.cm-hmd-internal-link:hover {
+  color: var(--color-link-hover) !important;
+}
+
+/* =============================
+   5. 引用块
+   ============================= */
+.markdown-preview-view blockquote {
+  border-left: 3px solid var(--border-quote) !important;
+  background: var(--bg-quote) !important;
+  font-style: italic !important;
+  color: var(--text-primary) !important;
+  border-radius: 0 6px 6px 0 !important;
+  padding: 12px 18px !important;
+  margin: 1em 0 !important;
+}
+
+/* 引用标记 > 颜色斜体 */
+.cm-s-obsidian span.cm-formatting-quote,
+.markdown-preview-view blockquote::before {
+  font-style: italic !important;
+  color: var(--color-quote-marker) !important;
+}
+
+/* =============================
+   6. 代码块
+   ============================= */
+.markdown-preview-view pre,
+.markdown-source-view pre,
+.cm-s-obsidian .HyperMD-codeblock {
+  background: var(--bg-code) !important;
+  border: none !important;
+  border-radius: var(--radius-code) !important;
+  color: var(--text-code) !important;
+  font-size: 0.9em !important;
+}
+
+.markdown-preview-view code,
+.cm-s-obsidian span.cm-inline-code {
+  background: var(--bg-code) !important;
+  color: var(--text-code) !important;
+  border-radius: 4px !important;
+  padding: 2px 6px !important;
+  font-size: 0.9em !important;
+}
+
+/* =============================
+   7. 滚动条
+   ============================= */
+::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555 !important;
+  border-radius: 3px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #777 !important;
+}
+
+/* =============================
+   8. 分割线
+   ============================= */
+.markdown-preview-view hr {
+  border: none !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, var(--border-quote), transparent) !important;
+  margin: 24px 0 !important;
+}
+
+/* =============================
+   9. 任务列表
+   ============================= */
+.markdown-preview-view input[type="checkbox"] {
+  accent-color: var(--color-h2) !important;
+  width: 15px !important;
+  height: 15px !important;
+}
+
+.markdown-preview-view input[type="checkbox"]:checked {
+  accent-color: #7cb342 !important;
+}
+
+/* =============================
+   10. 表格
+   ============================= */
+.markdown-preview-view table {
+  border-collapse: collapse !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  font-size: 0.95em !important;
+}
+
+.markdown-preview-view th {
+  background: var(--bg-sidebar) !important;
+  color: #E6D5B8 !important;
+  font-weight: bold !important;
+  padding: 8px 14px !important;
+  border: 1px solid var(--border-quote) !important;
+}
+
+.markdown-preview-view td {
+  padding: 6px 14px !important;
+  border: 1px solid var(--border-quote) !important;
+  background: rgba(255,255,255,0.4) !important;
+}
+
+/* =============================
+   11. 标签
+   ============================= */
+.markdown-preview-view a.tag {
+  background: var(--border-quote) !important;
+  color: var(--text-primary) !important;
+  border-radius: 10px !important;
+  padding: 1px 10px !important;
+  font-size: 0.85em !important;
+  text-decoration: none !important;
+}
+
+.markdown-preview-view a.tag:hover {
+  background: var(--color-link) !important;
+  color: #fff !important;
+}
+
+/* =============================
+   12. 高亮
+   ============================= */
+.cm-s-obsidian span.cm-highlight,
+.markdown-preview-view mark {
+  background: linear-gradient(120deg, #f3e2a9, #f7d794) !important;
+  color: var(--text-primary) !important;
+  padding: 0 3px !important;
+  border-radius: 3px !important;
+}
+
+/* =============================
+   13. 日系胶带风 Callout
+   ============================= */
+.callout {
+  background:
+    linear-gradient(90deg, var(--callout-color-alpha, rgba(150,200,150,0.08)) 1px, transparent 1px),
+    linear-gradient(180deg, var(--callout-color-alpha, rgba(150,200,150,0.08)) 1px, transparent 1px),
+    var(--bg-paper, #F7F4EA) !important;
+  background-size: 12px 12px !important;
+  background-position: -1px -1px !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 16px 20px 12px 20px !important;
+  position: relative !important;
+  margin: 24px 0 !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important;
+  overflow: visible !important;
+}
+
+/* 标题胶带 */
+.callout .callout-title {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 4px 20px 4px 14px !important;
+  margin: -22px 0 10px -14px !important;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--callout-color, #9b59b6) 75%, #f7f4ea),
+    var(--callout-color, #9b59b6)
+  ) !important;
+  border-radius: 0 3px 3px 0 !important;
+  transform: rotate(-0.8deg) !important;
+  box-shadow:
+    2px 2px 6px rgba(0,0,0,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.25) !important;
+  font-weight: 600 !important;
+  font-size: 0.95em !important;
+  color: #fff !important;
+  letter-spacing: 0.3px !important;
+}
+
+.callout .callout-title::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: 0;
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--callout-color, #9b59b6) 75%, #f7f4ea),
+    var(--callout-color, #9b59b6)
+  );
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+/* 撕边 */
+.callout .callout-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    -2deg,
+    transparent, transparent 2px,
+    rgba(255,255,255,0.12) 2px, rgba(255,255,255,0.12) 4px
+  );
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.callout .callout-title .callout-icon {
+  color: rgba(255,255,255,0.9) !important;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.15));
+}
+
+.callout .callout-title .callout-title-inner {
+  color: #fff !important;
+}
+
+.callout .callout-content {
+  background: transparent !important;
+  padding: 4px 0 !important;
+}
+
+/* 各类型颜色 */
+.callout[data-callout="note"],
+.callout[data-callout="abstract"],
+.callout[data-callout="info"],
+.callout[data-callout="todo"] {
+  --callout-color: #9b59b6;
+  --callout-color-alpha: rgba(155,89,182,0.08);
+}
+
+.callout[data-callout="tip"],
+.callout[data-callout="success"],
+.callout[data-callout="done"],
+.callout[data-callout="check"] {
+  --callout-color: #26c6a0;
+  --callout-color-alpha: rgba(38,198,160,0.08);
+}
+
+.callout[data-callout="important"],
+.callout[data-callout="question"],
+.callout[data-callout="help"],
+.callout[data-callout="faq"] {
+  --callout-color: #ff8a7a;
+  --callout-color-alpha: rgba(255,138,122,0.08);
+}
+
+.callout[data-callout="quote"],
+.callout[data-callout="example"],
+.callout[data-callout="cite"] {
+  --callout-color: #7cb342;
+  --callout-color-alpha: rgba(124,179,66,0.08);
+}
+
+.callout[data-callout="warning"],
+.callout[data-callout="caution"],
+.callout[data-callout="attention"] {
+  --callout-color: #f9a825;
+  --callout-color-alpha: rgba(249,168,37,0.08);
+}
+
+.callout[data-callout="danger"],
+.callout[data-callout="error"],
+.callout[data-callout="bug"],
+.callout[data-callout="fail"] {
+  --callout-color: #e53935;
+  --callout-color-alpha: rgba(229,57,53,0.08);
+}
+
+/* Warning - 条纹胶带 */
+.callout[data-callout="warning"] .callout-title {
+  background: repeating-linear-gradient(
+    45deg, #f9a825, #f9a825 6px, #fbc02d 6px, #fbc02d 12px
+  ) !important;
+}
+.callout[data-callout="warning"] .callout-title::after {
+  background: repeating-linear-gradient(
+    45deg, #f9a825, #f9a825 6px, #fbc02d 6px, #fbc02d 12px
+  ) !important;
+}
+
+/* Danger - 双胶带 */
+.callout[data-callout="danger"] .callout-title {
+  box-shadow:
+    0 0 0 3px #e53935,
+    2px 2px 8px rgba(0,0,0,0.2) !important;
+  background: linear-gradient(135deg, #e53935, #c62828) !important;
+}
+.callout[data-callout="danger"] .callout-title::after {
+  background: linear-gradient(135deg, #e53935, #c62828) !important;
+}
+.callout[data-callout="danger"] .callout-title::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 2px;
+  width: calc(100% + 8px);
+  height: 100%;
+  background: repeating-linear-gradient(
+    -45deg, transparent, transparent 4px,
+    rgba(255,255,255,0.15) 4px, rgba(255,255,255,0.15) 8px
+  );
+  border-radius: inherit;
+  pointer-events: none;
+  transform: rotate(1.5deg);
+}
+
+/* =============================
+   14. 确保 Callout 纸张底色（覆盖彩色笔记.css）
+   ============================= */
+.callout.callout {
+  background:
+    linear-gradient(90deg, var(--callout-color-alpha, rgba(150,200,150,0.08)) 1px, transparent 1px),
+    linear-gradient(180deg, var(--callout-color-alpha, rgba(150,200,150,0.08)) 1px, transparent 1px),
+    var(--bg-paper, #F7F4EA) !important;
+  background-size: 12px 12px !important;
+  background-position: -1px -1px !important;
+}
+
+/* 标题胶带渐变统一使用纸张色混合 */
+.callout.callout .callout-title {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--callout-color, #9b59b6) 75%, var(--bg-paper, #F7F4EA)),
+    var(--callout-color, #9b59b6)
+  ) !important;
+}
+.callout.callout .callout-title::after {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--callout-color, #9b59b6) 75%, var(--bg-paper, #F7F4EA)),
+    var(--callout-color, #9b59b6)
+  ) !important;
+}
+
+/* =============================
+   15. 🧁 马卡龙多维表
+   ============================= */
+.markdown-preview-view table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
+  font-size: 0.93em !important;
+  width: 100% !important;
+}
+
+.markdown-preview-view th {
+  padding: 10px 16px !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  border: none !important;
+  text-align: center !important;
+  letter-spacing: 0.5px !important;
+}
+
+.markdown-preview-view td {
+  padding: 9px 14px !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(0,0,0,0.04) !important;
+  background: transparent !important;
+}
+
+/* 表头渐变色轮（马卡龙色系） */
+.markdown-preview-view thead th:first-child { border-radius: 14px 0 0 0 !important; }
+.markdown-preview-view thead th:last-child  { border-radius: 0 14px 0 0 !important; }
+.markdown-preview-view thead th {
+  background: linear-gradient(135deg, #FFB5C2, #FF9EAA) !important;
+}
+.markdown-preview-view thead th:nth-child(2) {
+  background: linear-gradient(135deg, #C3AED6, #B99AD6) !important;
+}
+.markdown-preview-view thead th:nth-child(3) {
+  background: linear-gradient(135deg, #B5EAD7, #9DD6C0) !important;
+}
+.markdown-preview-view thead th:nth-child(4) {
+  background: linear-gradient(135deg, #FFDAB9, #FCC89B) !important;
+}
+.markdown-preview-view thead th:nth-child(5) {
+  background: linear-gradient(135deg, #B5D8EB, #A3CEE6) !important;
+}
+.markdown-preview-view thead th:nth-child(6) {
+  background: linear-gradient(135deg, #FFF5BA, #FFE680) !important;
+}
+
+/* 行斑马纹 */
+.markdown-preview-view tbody tr:nth-child(even) td {
+  background: rgba(255,181,194,0.08) !important;
+}
+.markdown-preview-view tbody tr:nth-child(odd) td {
+  background: rgba(255,218,185,0.06) !important;
+}
+
+/* 行悬浮 */
+.markdown-preview-view tbody tr:hover td {
+  background: rgba(195,174,214,0.12) !important;
+}
+
+/* 最后一行的圆角 */
+.markdown-preview-view tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 14px !important;
+}
+.markdown-preview-view tbody tr:last-child td:last-child {
+  border-radius: 0 0 14px 0 !important;
+}
+
+/* =============================
+   16. 🍬 马卡龙卡片
+   ============================= */
+
+/* 引用块 → 马卡龙卡片 */
+.markdown-preview-view blockquote {
+  background: linear-gradient(135deg, #FFF5F7, #FFF0F5) !important;
+  border: none !important;
+  border-left: 5px solid #FFB5C2 !important;
+  border-radius: 14px !important;
+  padding: 16px 20px !important;
+  margin: 16px 0 !important;
+  box-shadow: 0 3px 12px rgba(255,181,194,0.15) !important;
+  font-style: normal !important;
+  color: var(--text-primary) !important;
+  position: relative !important;
+}
+
+/* 引用 · 马卡龙多色 */
+.markdown-preview-view blockquote:nth-of-type(6n+2) {
+  border-left-color: #C3AED6 !important;
+  background: linear-gradient(135deg, #F8F4FF, #F0E8FF) !important;
+  box-shadow: 0 3px 12px rgba(195,174,214,0.15) !important;
+}
+.markdown-preview-view blockquote:nth-of-type(6n+3) {
+  border-left-color: #B5EAD7 !important;
+  background: linear-gradient(135deg, #F0FFF5, #E8FFF0) !important;
+  box-shadow: 0 3px 12px rgba(181,234,215,0.15) !important;
+}
+.markdown-preview-view blockquote:nth-of-type(6n+4) {
+  border-left-color: #FFDAB9 !important;
+  background: linear-gradient(135deg, #FFF8F0, #FFF0E0) !important;
+  box-shadow: 0 3px 12px rgba(255,218,185,0.15) !important;
+}
+.markdown-preview-view blockquote:nth-of-type(6n+5) {
+  border-left-color: #B5D8EB !important;
+  background: linear-gradient(135deg, #F0F8FF, #E0F0FF) !important;
+  box-shadow: 0 3px 12px rgba(181,216,235,0.15) !important;
+}
+.markdown-preview-view blockquote:nth-of-type(6n) {
+  border-left-color: #FFF5BA !important;
+  background: linear-gradient(135deg, #FFFEF0, #FFFDE0) !important;
+  box-shadow: 0 3px 12px rgba(255,245,186,0.2) !important;
+}
+
+/* 引用内链接 */
+.markdown-preview-view blockquote a {
+  color: #FF8A9A !important;
+  font-weight: 500 !important;
+}
+
+/* [!card] 特殊 Callout — 无标题卡片 */
+.callout[data-callout="card"] {
+  background: linear-gradient(135deg, #FFF5F7, #FFF0F5) !important;
+  border: none !important;
+  border-radius: 16px !important;
+  padding: 20px 24px !important;
+  box-shadow: 0 4px 16px rgba(255,181,194,0.12) !important;
+}
+.callout[data-callout="card"] .callout-title {
+  display: none !important;
+}
+.callout[data-callout="card"] .callout-content {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* [!bun] 可爱小圆卡 */
+.callout[data-callout="bun"] {
+  background: linear-gradient(135deg, #FFE4E8, #FFD4DC) !important;
+  border: 2px solid #FFB5C2 !important;
+  border-radius: 20px !important;
+  padding: 16px 20px !important;
+  box-shadow: 0 4px 20px rgba(255,181,194,0.15) !important;
+}
+.callout[data-callout="bun"] .callout-title {
+  display: flex !important;
+  justify-content: center !important;
+  background: none !important;
+  transform: none !important;
+  margin: 0 0 8px 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  color: #D4617A !important;
+  font-size: 1.1em !important;
+  font-weight: 700 !important;
+}
+.callout[data-callout="bun"] .callout-title::before,
+.callout[data-callout="bun"] .callout-title::after {
+  display: none !important;
+}
+.callout[data-callout="bun"] .callout-title .callout-title-inner {
+  color: #D4617A !important;
+}
+.callout[data-callout="bun"] .callout-icon {
+  filter: none !important;
+  color: #D4617A !important;
+}
+.callout[data-callout="bun"] .callout-content {
+  background: transparent !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+/* 分割线 → 马卡龙彩虹 */
+.markdown-preview-view hr {
+  border: none !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, #FFB5C2, #C3AED6, #B5EAD7, #FFDAB9, #B5D8EB, #FFF5BA) !important;
+  border-radius: 3px !important;
+  margin: 28px 0 !important;
+  opacity: 0.7 !important;
+}

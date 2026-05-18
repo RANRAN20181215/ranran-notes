@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>语文笔记生成器 - 强制重新生成版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .search-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .input-group input {
+            flex: 1;
+            padding: 15px 20px;
+            font-size: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            outline: none;
+        }
+        
+        .input-group input:focus {
+            border-color: #667eea;
+        }
+        
+        .input-group button {
+            padding: 15px 30px;
+            font-size: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .input-group button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .loading {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            display: none;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .result-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .result-header {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            border-bottom: 2px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .result-header h2 {
+            color: #333;
+        }
+        
+        .copy-btn {
+            padding: 8px 16px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .note-content {
+            padding: 30px;
+            line-height: 1.8;
+            max-height: 600px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            font-family: inherit;
+        }
+        
+        .error-card {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 20px;
+            border-radius: 12px;
+            display: none;
+        }
+        
+        .token-status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        
+        .token-ok {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .token-missing {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .progress-info {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        
+        @media (max-width: 600px) {
+            .input-group {
+                flex-direction: column;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🕷️ 语文笔记生成器 · AI智能版</h1>
+            <p>每次点击都重新爬取 + AI 重新生成 | 无缓存 | 强制刷新</p>
+        </header>
+        
+        <div class="search-card">
+            <div class="input-group">
+                <input type="text" id="lessonName" placeholder="输入课文名称，例如：海底世界" />
+                <button id="generateBtn" onclick="generateNote()">🚀 重新生成笔记</button>
+            </div>
+            
+            <div class="warning">
+                ⚡ 每次点击都会重新爬取 hanchacha.com 并调用 AI 重新生成，不会使用旧笔记
+            </div>
+            
+            <div id="tokenStatus" class="token-status token-missing">
+                ⚠️ 正在检测 Token...
+            </div>
+        </div>
+        
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p id="loadingText">🕷️ 正在触发爬虫...</p>
+            <div class="progress-info" id="progressInfo"></div>
+        </div>
+        
+        <div id="resultCard" class="result-card">
+            <div class="result-header">
+                <h2>📖 AI 生成结果</h2>
+                <button class="copy-btn" onclick="copyNote()">📋 复制笔记</button>
+            </div>
+            <div id="noteContent" class="note-content"></div>
+        </div>
+        
+        <div id="errorCard" class="error-card"></div>
+    </div>
+
+    <script>
+        const REPO_OWNER = "finnlove";
+        const REPO_NAME = "yuwen-note";
+        
+        // 检查 Token 状态
+        function checkTokenStatus() {
+            const token = localStorage.getItem('github_token');
+            const statusDiv = document.getElementById('tokenStatus');
+            if (token && token.startsWith('ghp_')) {
+                statusDiv.innerHTML = '✅ GitHub Token 已配置，爬虫功能可用！每次都会重新生成。';
+                statusDiv.className = 'token-status token-ok';
+                return true;
+            } else {
+                statusDiv.innerHTML = '⚠️ 未配置 GitHub Token<br>📌 按 F12 打开 Console，输入：localStorage.setItem("github_token", "你的token")';
+                statusDiv.className = 'token-status token-missing';
+                return false;
+            }
+        }
+        
+        // 生成唯一的时间戳，用于强制刷新
+        function getTimestamp() {
+            return new Date().getTime();
+        }
+        
+        async function generateNote() {
+            const lessonName = document.getElementById('lessonName').value.trim();
+            const generateBtn = document.getElementById('generateBtn');
+            
+            if (!lessonName) {
+                alert('请输入课文名称');
+                return;
+            }
+            
+            // 禁用按钮，防止重复点击
+            generateBtn.disabled = true;
+            generateBtn.textContent = '⏳ 生成中...';
+            
+            // 清空所有显示
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('resultCard').style.display = 'none';
+            document.getElementById('errorCard').style.display = 'none';
+            document.getElementById('loadingText').innerHTML = '🕷️ 正在触发爬虫...';
+            document.getElementById('progressInfo').innerHTML = '';
+            
+            const token = localStorage.getItem('github_token');
+            
+            try {
+                // 检查 Token
+                if (!token || !token.startsWith('ghp_')) {
+                    throw new Error('未配置 GitHub Token，无法触发爬虫');
+                }
+                
+                // 触发爬虫 - 每次都是新的请求
+                document.getElementById('loadingText').innerHTML = '📡 正在触发 GitHub Actions 爬虫...';
+                const triggered = await triggerWorkflow(lessonName, token);
+                
+                if (!triggered) {
+                    throw new Error('触发爬虫失败，请检查 Token 权限');
+                }
+                
+                // 等待结果 - 轮询检查新生成的文件
+                document.getElementById('loadingText').innerHTML = '🕷️ 爬虫已启动，正在从 hanchacha.com 抓取资料...';
+                document.getElementById('progressInfo').innerHTML = '⏱️ 预计需要 30-90 秒，请耐心等待（AI 正在生成超详细笔记）';
+                
+                const note = await pollForNewResult(lessonName);
+                
+                if (note) {
+                    document.getElementById('loadingText').innerHTML = '✅ 生成完成！';
+                    displayNote(note);
+                    document.getElementById('loading').style.display = 'none';
+                } else {
+                    throw new Error('爬取超时，未获取到内容。请检查 Actions 运行状态。');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('errorCard').innerHTML = `❌ ${error.message}<br><br>💡 提示：可以在 GitHub Actions 页面手动运行测试，查看详细日志。`;
+                document.getElementById('errorCard').style.display = 'block';
+                document.getElementById('loading').style.display = 'none';
+            } finally {
+                // 恢复按钮
+                generateBtn.disabled = false;
+                generateBtn.textContent = '🚀 重新生成笔记';
+            }
+        }
+        
+        async function triggerWorkflow(lessonName, token) {
+            const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/crawl.yml/dispatches`;
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        ref: 'main',
+                        inputs: { 
+                            lesson_name: lessonName
+                        }
+                    })
+                });
+                
+                if (response.ok) {
+                    console.log('✅ 爬虫触发成功');
+                    return true;
+                } else {
+                    const text = await response.text();
+                    console.log('❌ 触发失败:', response.status, text);
+                    return false;
+                }
+            } catch (e) {
+                console.error('触发失败:', e);
+                return false;
+            }
+        }
+        
+        async function pollForNewResult(lessonName, maxAttempts = 35, interval = 3000) {
+            // 记录开始时间，用于强制获取最新版本
+            const startTime = getTimestamp();
+            
+            for (let i = 0; i < maxAttempts; i++) {
+                await new Promise(r => setTimeout(r, interval));
+                document.getElementById('progressInfo').innerHTML = `⏱️ 等待中... (${i+1}/${maxAttempts}) AI 正在生成详细笔记`;
+                
+                try {
+                    // 添加时间戳参数强制刷新，避免 GitHub 缓存
+                    const url = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/data/${encodeURIComponent(lessonName)}.md?t=${getTimestamp()}`;
+                    const response = await fetch(url, {
+                        cache: 'no-cache',
+                        headers: {
+                            'Cache-Control': 'no-cache, no-store, must-revalidate',
+                            'Pragma': 'no-cache'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        const note = await response.text();
+                        // 检查是否是 AI 生成的完整笔记（长度足够，不是备用模板）
+                        if (note && note.length > 800 && !note.includes('AI 服务暂时不可用')) {
+                            console.log(`✅ 获取到新笔记，长度: ${note.length} 字`);
+                            return note;
+                        }
+                    }
+                } catch(e) {
+                    // 文件还不存在，继续等待
+                }
+            }
+            return null;
+        }
+        
+        function displayNote(note) {
+            // 简单 Markdown 转 HTML
+            let html = note
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/\n/g, '<br>')
+                .replace(/^# (.*$)/gm, '<h1 style="font-size: 1.8rem; margin: 20px 0 10px; color: #333;">$1</h1>')
+                .replace(/^## (.*$)/gm, '<h2 style="font-size: 1.4rem; margin: 15px 0 10px; color: #555;">$1</h2>')
+                .replace(/^### (.*$)/gm, '<h3 style="font-size: 1.2rem; margin: 12px 0 8px; color: #667eea;">$1</h3>')
+                .replace(/^#### (.*$)/gm, '<h4 style="font-size: 1.1rem; margin: 10px 0 5px; color: #764ba2;">$1</h4>')
+                .replace(/^---$/gm, '<hr style="margin: 20px 0;">')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/^> (.*$)/gm, '<blockquote style="border-left: 4px solid #667eea; padding-left: 15px; margin: 10px 0; color: #666;">$1</blockquote>')
+                .replace(/\|/g, '|');
+            
+            // 简单处理表格
+            html = html.replace(/\|(.+)\|/g, function(match) {
+                let cells = match.split('|').filter(c => c.trim());
+                if (cells.length > 1) {
+                    return '<div style="display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid #eee;">' + 
+                           cells.map(cell => '<span style="flex: 1;">' + cell.trim() + '</span>').join('') + 
+                           '</div>';
+                }
+                return match;
+            });
+            
+            document.getElementById('noteContent').innerHTML = html;
+            document.getElementById('resultCard').style.display = 'block';
+        }
+        
+        function copyNote() {
+            const text = document.getElementById('noteContent').innerText;
+            navigator.clipboard.writeText(text);
+            alert('✅ 笔记已复制到剪贴板');
+        }
+        
+        // 回车生成
+        document.getElementById('lessonName').addEventListener('keypress', e => {
+            if (e.key === 'Enter') generateNote();
+        });
+        
+        // 页面加载检查
+        checkTokenStatus();
+        console.log('📚 语文笔记生成器已加载（强制重新生成模式）');
+        console.log('💡 每次点击都会重新爬取 + AI 重新生成，不使用任何缓存');
+    </script>
+</body>
+</html>

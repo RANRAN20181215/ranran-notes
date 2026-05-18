@@ -1,0 +1,53 @@
+{
+  "colorRules": [
+    {
+      "id": "一年级-ff5252",
+      "value": "一年级",
+      "type": "folder",
+      "color": "#ff5252",
+      "alpha": 0.06
+    },
+    {
+      "id": "二年级-ff9800",
+      "value": "二年级",
+      "type": "folder",
+      "color": "#ff9800",
+      "alpha": 0.06
+    },
+    {
+      "id": "数学-2196f3",
+      "value": "数学",
+      "type": "folder",
+      "color": "#2196f3",
+      "alpha": 0.06
+    },
+    {
+      "id": "英语-4caf50",
+      "value": "英语",
+      "type": "folder",
+      "color": "#4caf50",
+      "alpha": 0.06
+    },
+    {
+      "id": "语文笔记-9c27b0",
+      "value": "语文",
+      "type": "folder",
+      "color": "#9c27b0",
+      "alpha": 0.05
+    },
+    {
+      "id": "copilot-009688",
+      "value": "copilot",
+      "type": "folder",
+      "color": "#009688",
+      "alpha": 0.05
+    },
+    {
+      "id": "错题本-f44336",
+      "value": "category: private",
+      "type": "frontmatter",
+      "color": "#f44336",
+      "alpha": 0.05
+    }
+  ]
+}
