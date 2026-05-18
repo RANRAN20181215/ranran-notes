@@ -1,0 +1,8 @@
+{
+  "buildCommand": "npx quartz build --directory . --output public",
+  "outputDirectory": "public",
+  "framework": null,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}

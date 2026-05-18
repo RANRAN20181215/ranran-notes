@@ -10,5 +10,12 @@
 Thumbs.db
 .DS_Store
 
-# Node (for Quartz, etc.)
+# Node (for Quartz)
 node_modules/
+.quartz-cache
+
+# Quartz build output
+public/
+
+# Generated plugin files
+*.ajson
