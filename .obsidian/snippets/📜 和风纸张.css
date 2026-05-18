@@ -386,7 +386,7 @@ body {
   background:
     linear-gradient(90deg, var(--callout-color-alpha, rgba(150,200,150,0.08)) 1px, transparent 1px),
     linear-gradient(180deg, var(--callout-color-alpha, rgba(150,200,150,0.08)) 1px, transparent 1px),
-    var(--bg-paper, #F7F4EA) !important;
+    #fff !important;
   background-size: 12px 12px !important;
   background-position: -1px -1px !important;
   border: none !important;
@@ -408,7 +408,7 @@ body {
   margin: -22px 0 10px -14px !important;
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--callout-color, #9b59b6) 75%, #f7f4ea),
+    color-mix(in srgb, var(--callout-color, #9b59b6) 75%, #fff),
     var(--callout-color, #9b59b6)
   ) !important;
   border-radius: 0 3px 3px 0 !important;
@@ -554,29 +554,29 @@ body {
 }
 
 /* =============================
-   14. 确保 Callout 纸张底色（覆盖彩色笔记.css）
+   14. 确保 Callout 白底（覆盖彩色笔记.css）
    ============================= */
 .callout.callout {
   background:
     linear-gradient(90deg, var(--callout-color-alpha, rgba(150,200,150,0.08)) 1px, transparent 1px),
     linear-gradient(180deg, var(--callout-color-alpha, rgba(150,200,150,0.08)) 1px, transparent 1px),
-    var(--bg-paper, #F7F4EA) !important;
+    #fff !important;
   background-size: 12px 12px !important;
   background-position: -1px -1px !important;
 }
 
-/* 标题胶带渐变统一使用纸张色混合 */
+/* 标题胶带渐变统一使用白色混合 */
 .callout.callout .callout-title {
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--callout-color, #9b59b6) 75%, var(--bg-paper, #F7F4EA)),
+    color-mix(in srgb, var(--callout-color, #9b59b6) 75%, #fff),
     var(--callout-color, #9b59b6)
   ) !important;
 }
 .callout.callout .callout-title::after {
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--callout-color, #9b59b6) 75%, var(--bg-paper, #F7F4EA)),
+    color-mix(in srgb, var(--callout-color, #9b59b6) 75%, #fff),
     var(--callout-color, #9b59b6)
   ) !important;
 }

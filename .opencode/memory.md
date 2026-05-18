@@ -9,6 +9,7 @@
 - gh_grep（GitHub 代码搜索）
 - flowus（FlowUs API）
 - obsidian（Obsidian 笔记）
+- pdf-mcp（PDF 读取 + OCR 识别）
 
 ## 可用 Skills
 - huashu-nuwa（女娲造人）
@@ -38,4 +39,4 @@
 - 私人仓库已就绪
 
 ## 会话记录
-- （每次会话结束时追加新内容）
+- 2026-05-19：完成全部配置（opencode.json + memory + backup + pdf-mcp），已提交 Git

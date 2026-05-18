@@ -25,6 +25,11 @@
     "obsidian": {
       "type": "local",
       "command": ["npx", "-y", "obsidian-mcp", "D:\\OB\\ranran"]
+    },
+    "pdf-mcp": {
+      "type": "local",
+      "command": ["python", "-m", "pdf_mcp.server"],
+      "enabled": true
     }
   }
 }

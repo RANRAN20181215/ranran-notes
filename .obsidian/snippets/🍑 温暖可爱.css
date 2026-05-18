@@ -1,0 +1,628 @@
+/* ============================
+   🍑 温暖可爱 - Warm Kawaii
+   渐变·温暖·低饱和·日系可爱
+   覆盖 Minimal / 和风纸张 / 彩色笔记
+   ============================ */
+
+/* ----- 全局变量 ----- */
+:root {
+  --kw-bg: #FFF8F5;
+  --kw-bg-warm: #FFF0EC;
+  --kw-sidebar: #FDF0EC;
+  --kw-sidebar-hover: #F5E0D8;
+  --kw-sidebar-active: #F0D5CC;
+  --kw-text: #5D4037;
+  --kw-text-muted: #B8A098;
+  --kw-text-sidebar: #6D4C41;
+  --kw-link: #E8938C;
+  --kw-link-hover: #D47C75;
+  --kw-border: #F0DCD5;
+  --kw-code-bg: #FFF5F2;
+  --kw-highlight: #FCE8D088;
+
+  /* 标题色 - 低饱和温暖系 */
+  --kw-h1: #D4A8A0;
+  --kw-h2: #D4B8A8;
+  --kw-h3: #D4C8A8;
+  --kw-h4: #A8C8A8;
+  --kw-h5: #A8B8C8;
+  --kw-h6: #B8A8C8;
+
+  /* Callout 色 - 温暖马卡龙 */
+  --kw-callout-note: #C8A8D0;
+  --kw-callout-tip: #A0C8B0;
+  --kw-callout-important: #E8A8A8;
+  --kw-callout-quote: #B8C8A8;
+  --kw-callout-warning: #E8D0A0;
+  --kw-callout-danger: #E8A8A8;
+}
+
+/* ============================
+   1. 全局背景 - 温暖渐变感
+   ============================ */
+body {
+  background: var(--kw-bg) !important;
+  color: var(--kw-text) !important;
+}
+
+.markdown-preview-view,
+.markdown-source-view,
+.view-content,
+.workspace-leaf-content {
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(232,168,168,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(232,200,160,0.06) 0%, transparent 60%),
+    var(--kw-bg) !important;
+  color: var(--kw-text) !important;
+}
+
+/* ============================
+   2. 侧边栏 - 温暖桃子色
+   ============================ */
+.workspace-split.mod-left-split,
+.workspace-split.mod-right-split,
+.nav-files-container,
+.workspace-leaf,
+.side-dock-ribbon,
+.side-dock-settings,
+.workspace-leaf-header,
+.view-header,
+.nav-header {
+  background: var(--kw-sidebar) !important;
+}
+
+.workspace-leaf {
+  border-radius: 10px !important;
+}
+
+.nav-folder-title {
+  font-weight: 600 !important;
+  color: var(--kw-text-sidebar) !important;
+  padding: 7px 14px !important;
+  font-size: 0.95em !important;
+  border-radius: 6px !important;
+}
+
+.nav-file-title {
+  color: var(--kw-text-sidebar) !important;
+  padding: 5px 14px !important;
+  border-radius: 6px !important;
+  opacity: 0.85 !important;
+}
+
+.nav-folder-title:hover,
+.nav-file-title:hover {
+  background: var(--kw-sidebar-hover) !important;
+}
+
+.nav-folder-title.is-active,
+.nav-file-title.is-active {
+  background: var(--kw-sidebar-active) !important;
+  color: var(--kw-text) !important;
+  opacity: 1 !important;
+}
+
+.view-header-title {
+  color: var(--kw-text-sidebar) !important;
+}
+
+/* ============================
+   3. 标题 - 温暖渐变
+   ============================ */
+.markdown-preview-view h1 {
+  color: var(--kw-h1) !important;
+  font-size: 1.8em !important;
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, var(--kw-h1), #E0C0B8) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  border-bottom: 2px solid var(--kw-h1) !important;
+  padding-bottom: 6px !important;
+}
+
+.markdown-preview-view h2 {
+  color: var(--kw-h2) !important;
+  font-size: 1.5em !important;
+  font-weight: 600 !important;
+  background: linear-gradient(135deg, var(--kw-h2), #E0D0B8) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  border-bottom: 2px dashed var(--kw-h2) !important;
+  padding-bottom: 4px !important;
+}
+
+.markdown-preview-view h3 {
+  color: var(--kw-h3) !important;
+  font-size: 1.3em !important;
+  font-weight: 600 !important;
+  border-left: 4px solid var(--kw-h3) !important;
+  padding-left: 12px !important;
+}
+
+.markdown-preview-view h4 {
+  color: var(--kw-h4) !important;
+  border-left: 3px solid var(--kw-h4) !important;
+  padding-left: 10px !important;
+}
+
+.markdown-preview-view h5 {
+  color: var(--kw-h5) !important;
+  border-left: 3px solid var(--kw-h5) !important;
+  padding-left: 10px !important;
+}
+
+.markdown-preview-view h6 {
+  color: var(--kw-h6) !important;
+  border-left: 3px solid var(--kw-h6) !important;
+  padding-left: 10px !important;
+}
+
+/* 源码模式标题 */
+.cm-header-1, .HyperMD-header-1 { color: var(--kw-h1) !important; }
+.cm-header-2, .HyperMD-header-2 { color: var(--kw-h2) !important; }
+.cm-header-3, .HyperMD-header-3 { color: var(--kw-h3) !important; }
+.cm-header-4, .HyperMD-header-4 { color: var(--kw-h4) !important; }
+.cm-header-5, .HyperMD-header-5 { color: var(--kw-h5) !important; }
+.cm-header-6, .HyperMD-header-6 { color: var(--kw-h6) !important; }
+
+/* ============================
+   4. 链接 - 温暖珊瑚
+   ============================ */
+.markdown-preview-view a,
+.cm-hmd-internal-link,
+.cm-url,
+.cm-link,
+.external-link {
+  color: var(--kw-link) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+}
+
+.markdown-preview-view a:hover,
+.cm-hmd-internal-link:hover {
+  color: var(--kw-link-hover) !important;
+  text-decoration: underline !important;
+}
+
+/* ============================
+   5. 引用块 - 温暖卡片
+   ============================ */
+.markdown-preview-view blockquote {
+  border: none !important;
+  border-left: 5px solid var(--kw-callout-note) !important;
+  background: linear-gradient(135deg, #FFF5F2, #FFF0EC) !important;
+  border-radius: 12px !important;
+  padding: 14px 20px !important;
+  margin: 1em 0 !important;
+  box-shadow: 0 2px 8px rgba(200,150,150,0.10) !important;
+  font-style: normal !important;
+  color: var(--kw-text) !important;
+}
+
+/* 多色循环 */
+.markdown-preview-view blockquote:nth-of-type(6n+2) {
+  border-left-color: var(--kw-callout-tip) !important;
+  background: linear-gradient(135deg, #F2FFF5, #ECFFF0) !important;
+}
+.markdown-preview-view blockquote:nth-of-type(6n+3) {
+  border-left-color: var(--kw-callout-important) !important;
+  background: linear-gradient(135deg, #FFF2F2, #FFECEC) !important;
+}
+.markdown-preview-view blockquote:nth-of-type(6n+4) {
+  border-left-color: var(--kw-callout-quote) !important;
+  background: linear-gradient(135deg, #F8FFF2, #F0FFEC) !important;
+}
+.markdown-preview-view blockquote:nth-of-type(6n+5) {
+  border-left-color: #B0C0D0 !important;
+  background: linear-gradient(135deg, #F2F5FF, #ECF0FF) !important;
+}
+.markdown-preview-view blockquote:nth-of-type(6n) {
+  border-left-color: var(--kw-callout-warning) !important;
+  background: linear-gradient(135deg, #FFF8F2, #FFF5EC) !important;
+}
+
+/* ============================
+   6. 代码块 - 温暖边框
+   ============================ */
+.markdown-preview-view pre,
+.markdown-source-view pre,
+.cm-s-obsidian .HyperMD-codeblock {
+  background: var(--kw-code-bg) !important;
+  border-left: 4px solid var(--kw-h5) !important;
+  border-radius: 8px !important;
+  color: var(--kw-text) !important;
+  font-size: 0.9em !important;
+}
+
+.markdown-preview-view code,
+.cm-s-obsidian span.cm-inline-code {
+  background: var(--kw-code-bg) !important;
+  color: var(--kw-text-muted) !important;
+  border-radius: 4px !important;
+  padding: 2px 6px !important;
+  font-size: 0.9em !important;
+}
+
+/* ============================
+   7. 表格 - 温暖马卡龙表头
+   ============================ */
+.markdown-preview-view table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 16px rgba(200,150,150,0.08) !important;
+  font-size: 0.93em !important;
+  width: 100% !important;
+}
+
+.markdown-preview-view th {
+  padding: 10px 16px !important;
+  font-weight: 600 !important;
+  color: var(--kw-text) !important;
+  border: none !important;
+  text-align: center !important;
+  letter-spacing: 0.3px !important;
+}
+
+.markdown-preview-view td {
+  padding: 9px 14px !important;
+  border: none !important;
+  border-bottom: 1px solid var(--kw-border) !important;
+  background: transparent !important;
+}
+
+/* 马卡龙渐变色轮 */
+.markdown-preview-view thead th:first-child { border-radius: 14px 0 0 0 !important; }
+.markdown-preview-view thead th:last-child  { border-radius: 0 14px 0 0 !important; }
+.markdown-preview-view thead th {
+  background: linear-gradient(135deg, #F5D0C8, #F0C8BD) !important;
+}
+.markdown-preview-view thead th:nth-child(2) {
+  background: linear-gradient(135deg, #D8C8D8, #D0C0D0) !important;
+}
+.markdown-preview-view thead th:nth-child(3) {
+  background: linear-gradient(135deg, #B8D8C8, #ADD0BD) !important;
+}
+.markdown-preview-view thead th:nth-child(4) {
+  background: linear-gradient(135deg, #F5D8C8, #F0D0BD) !important;
+}
+.markdown-preview-view thead th:nth-child(5) {
+  background: linear-gradient(135deg, #C0C8D8, #B5BDD0) !important;
+}
+.markdown-preview-view thead th:nth-child(6) {
+  background: linear-gradient(135deg, #F5E8C8, #F0E0BD) !important;
+}
+
+/* 斑马纹 */
+.markdown-preview-view tbody tr:nth-child(even) td {
+  background: rgba(240,200,200,0.06) !important;
+}
+.markdown-preview-view tbody tr:nth-child(odd) td {
+  background: rgba(255,240,235,0.04) !important;
+}
+.markdown-preview-view tbody tr:hover td {
+  background: rgba(220,190,190,0.10) !important;
+}
+.markdown-preview-view tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 14px !important;
+}
+.markdown-preview-view tbody tr:last-child td:last-child {
+  border-radius: 0 0 14px 0 !important;
+}
+
+/* ============================
+   8. Callout - 温暖胶带风
+   ============================ */
+.callout {
+  background:
+    linear-gradient(90deg, var(--callout-color-alpha, rgba(200,168,208,0.08)) 1px, transparent 1px),
+    linear-gradient(180deg, var(--callout-color-alpha, rgba(200,168,208,0.08)) 1px, transparent 1px),
+    #fff !important;
+  background-size: 12px 12px !important;
+  background-position: -1px -1px !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 16px 20px 12px 20px !important;
+  margin: 24px 0 !important;
+  box-shadow: 0 2px 8px rgba(200,150,150,0.08) !important;
+  overflow: visible !important;
+  position: relative !important;
+}
+
+/* 标题胶带 - 半透明彩色斜贴 */
+.callout .callout-title {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 5px 22px 5px 16px !important;
+  margin: -22px 0 10px -14px !important;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--callout-color, #C8A8D0) 80%, #fff),
+    var(--callout-color, #C8A8D0)
+  ) !important;
+  border-radius: 0 4px 4px 0 !important;
+  transform: rotate(-0.8deg) !important;
+  box-shadow:
+    2px 2px 8px rgba(0,0,0,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.3) !important;
+  font-weight: 600 !important;
+  font-size: 0.95em !important;
+  color: #fff !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* 撕边三角 */
+.callout .callout-title::after {
+  content: '';
+  position: absolute;
+  right: -9px;
+  top: 0;
+  width: 9px;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--callout-color, #C8A8D0) 80%, #fff),
+    var(--callout-color, #C8A8D0)
+  );
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+/* 齿孔纹路 */
+.callout .callout-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    -2deg,
+    transparent, transparent 2px,
+    rgba(255,255,255,0.12) 2px, rgba(255,255,255,0.12) 4px
+  );
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.callout .callout-title .callout-icon {
+  color: rgba(255,255,255,0.9) !important;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.10));
+}
+
+.callout .callout-title .callout-title-inner {
+  color: #fff !important;
+}
+
+.callout .callout-content {
+  background: transparent !important;
+  padding: 4px 0 !important;
+}
+
+/* ---- 类型颜色 ---- */
+.callout[data-callout="note"],
+.callout[data-callout="abstract"],
+.callout[data-callout="info"],
+.callout[data-callout="todo"] {
+  --callout-color: var(--kw-callout-note);
+  --callout-color-alpha: rgba(200,168,208,0.08);
+}
+
+.callout[data-callout="tip"],
+.callout[data-callout="success"],
+.callout[data-callout="done"],
+.callout[data-callout="check"] {
+  --callout-color: var(--kw-callout-tip);
+  --callout-color-alpha: rgba(160,200,176,0.08);
+}
+
+.callout[data-callout="important"],
+.callout[data-callout="question"],
+.callout[data-callout="help"],
+.callout[data-callout="faq"] {
+  --callout-color: var(--kw-callout-important);
+  --callout-color-alpha: rgba(232,168,168,0.08);
+}
+
+.callout[data-callout="quote"],
+.callout[data-callout="example"],
+.callout[data-callout="cite"] {
+  --callout-color: var(--kw-callout-quote);
+  --callout-color-alpha: rgba(184,200,168,0.08);
+}
+
+.callout[data-callout="warning"],
+.callout[data-callout="caution"],
+.callout[data-callout="attention"] {
+  --callout-color: var(--kw-callout-warning);
+  --callout-color-alpha: rgba(232,208,160,0.08);
+}
+
+.callout[data-callout="danger"],
+.callout[data-callout="error"],
+.callout[data-callout="bug"],
+.callout[data-callout="fail"] {
+  --callout-color: var(--kw-callout-danger);
+  --callout-color-alpha: rgba(232,168,168,0.08);
+}
+
+/* Warning - 条纹胶带 */
+.callout[data-callout="warning"] .callout-title {
+  background: repeating-linear-gradient(
+    45deg, #E8D0A0, #E8D0A0 6px, #F0D8A8 6px, #F0D8A8 12px
+  ) !important;
+}
+.callout[data-callout="warning"] .callout-title::after {
+  background: repeating-linear-gradient(
+    45deg, #E8D0A0, #E8D0A0 6px, #F0D8A8 6px, #F0D8A8 12px
+  ) !important;
+}
+
+/* Danger - 双胶带 */
+.callout[data-callout="danger"] .callout-title {
+  box-shadow:
+    0 0 0 3px #E8A8A8,
+    2px 2px 8px rgba(0,0,0,0.12) !important;
+  background: linear-gradient(135deg, #E8A8A8, #D89898) !important;
+}
+.callout[data-callout="danger"] .callout-title::after {
+  background: linear-gradient(135deg, #E8A8A8, #D89898) !important;
+}
+.callout[data-callout="danger"] .callout-title::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 2px;
+  width: calc(100% + 8px);
+  height: 100%;
+  background: repeating-linear-gradient(
+    -45deg, transparent, transparent 4px,
+    rgba(255,255,255,0.15) 4px, rgba(255,255,255,0.15) 8px
+  );
+  border-radius: inherit;
+  pointer-events: none;
+  transform: rotate(1.5deg);
+}
+
+/* ============================
+   9. 标签 - 温暖小丸子
+   ============================ */
+.markdown-preview-view a.tag {
+  background: linear-gradient(135deg, #F5D0C8, #F0C8BD) !important;
+  color: var(--kw-text) !important;
+  border-radius: 14px !important;
+  padding: 2px 12px !important;
+  font-size: 0.85em !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  transition: transform 0.2s !important;
+  box-shadow: 0 1px 3px rgba(200,150,150,0.10) !important;
+}
+
+.markdown-preview-view a.tag:hover {
+  transform: scale(1.05) !important;
+  background: linear-gradient(135deg, #E8C0B8, #E0B8AD) !important;
+}
+
+/* ============================
+   10. 分割线 - 温暖彩虹
+   ============================ */
+.markdown-preview-view hr {
+  border: none !important;
+  height: 3px !important;
+  background: linear-gradient(
+    90deg,
+    #F5D0C8, #D8C8D8, #B8D8C8, #F5D8C8, #C0C8D8, #F5E8C8
+  ) !important;
+  border-radius: 3px !important;
+  margin: 28px 0 !important;
+  opacity: 0.6 !important;
+}
+
+/* ============================
+   11. 任务列表
+   ============================ */
+.markdown-preview-view input[type="checkbox"] {
+  accent-color: var(--kw-callout-note) !important;
+  width: 16px !important;
+  height: 16px !important;
+  cursor: pointer !important;
+}
+
+.markdown-preview-view input[type="checkbox"]:checked {
+  accent-color: var(--kw-callout-tip) !important;
+}
+
+/* ============================
+   12. 高亮
+   ============================ */
+.cm-s-obsidian span.cm-highlight,
+.markdown-preview-view mark {
+  background: var(--kw-highlight) !important;
+  color: var(--kw-text) !important;
+  padding: 0 4px !important;
+  border-radius: 4px !important;
+}
+
+/* ============================
+   13. 滚动条
+   ============================ */
+::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--kw-border) !important;
+  border-radius: 3px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--kw-text-muted) !important;
+}
+
+/* ============================
+   14. 按钮 & 界面控件
+   ============================ */
+button:not(.clickable-icon),
+.mod-cta {
+  background: linear-gradient(135deg, var(--kw-h1), var(--kw-h2)) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 6px 16px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 2px 6px rgba(200,150,150,0.15) !important;
+}
+
+button:not(.clickable-icon):hover {
+  box-shadow: 0 4px 12px rgba(200,150,150,0.25) !important;
+  transform: translateY(-1px);
+}
+
+/* ============================
+   15. 暗色模式 - 温暖夜间
+   ============================ */
+.theme-dark {
+  --kw-bg: #2A2020;
+  --kw-bg-warm: #302525;
+  --kw-sidebar: #251C1C;
+  --kw-sidebar-hover: #352828;
+  --kw-sidebar-active: #403030;
+  --kw-text: #E8D8D0;
+  --kw-text-muted: #A09088;
+  --kw-text-sidebar: #D0C0B8;
+  --kw-link: #E8A098;
+  --kw-link-hover: #D48880;
+  --kw-border: #3D3030;
+  --kw-code-bg: #2D2222;
+  --kw-highlight: #4D3A3088;
+
+  --kw-h1: #D4A8A0;
+  --kw-h2: #D4B8A8;
+  --kw-h3: #D4C8A8;
+  --kw-h4: #A0C0A0;
+  --kw-h5: #A0B0C0;
+  --kw-h6: #B0A0C0;
+}
+
+.theme-dark .markdown-preview-view blockquote {
+  background: linear-gradient(135deg, #2D2222, #302525) !important;
+}
+.theme-dark .markdown-preview-view pre {
+  background: #2D2222 !important;
+}
+.theme-dark .callout {
+  background:
+    linear-gradient(90deg, var(--callout-color-alpha, rgba(200,168,208,0.06)) 1px, transparent 1px),
+    linear-gradient(180deg, var(--callout-color-alpha, rgba(200,168,208,0.06)) 1px, transparent 1px),
+    #2A2020 !important;
+}
