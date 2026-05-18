@@ -16,7 +16,7 @@ const config: QuartzConfig = {
       provider: "vercel",
     },
     locale: "zh-CN",
-    baseUrl: "ranran-notes.vercel.app",
+    baseUrl: "RANRAN20181215.github.io/ranran-notes",
     ignorePatterns: ["node_modules", ".smart-env", ".obsidian", "quartz", "quartz-temp", "copilot", "Templates", ".agents", ".github", "yuwen-note-main", "public", "*.ps1", "skills-lock.json", "nuwa-skill.md", "sync-obsidian-to-flowus.ps1", "*.ajson"],
     defaultDateType: "modified",
     theme: {
