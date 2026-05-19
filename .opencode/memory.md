@@ -37,7 +37,8 @@
 - OpenRouter 已配置为备用 provider，不影响内置 API
 
 ## Gitee 备份
-- 私人仓库已就绪
+- 私人仓库：gitee.com/xiayun880512/opencode-config
+- 已双远程：GitHub + Gitee
 
 ## ⚠️ 一键恢复（出问题时找我）
 - 项目根目录双击 `.opencode\restore.bat`
@@ -54,3 +55,4 @@
 ## 会话记录
 - 2026-05-19：完成全部配置（opencode.json + memory + backup + pdf-mcp），已提交 Git
 - 2026-05-19（晚）：移除 FlowUs MCP、省 token 技巧入库、加 OpenRouter 备用、同步备份到 Git
+- 2026-05-19（晚）：打通 Gitee 双远程备份
