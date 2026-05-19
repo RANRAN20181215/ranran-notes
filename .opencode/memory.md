@@ -53,3 +53,4 @@
 
 ## 会话记录
 - 2026-05-19：完成全部配置（opencode.json + memory + backup + pdf-mcp），已提交 Git
+- 2026-05-19（晚）：移除 FlowUs MCP、省 token 技巧入库、加 OpenRouter 备用、同步备份到 Git
