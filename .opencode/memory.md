@@ -8,6 +8,7 @@
 ## MCP 工具箱
 - context7（文档查询）
 - gh_grep（GitHub 代码搜索）
+- flowus（FlowUs API）
 - obsidian（Obsidian 笔记）
 - pdf-mcp（PDF 读取 + OCR 识别）
 
@@ -46,7 +47,7 @@
 - 重启 OpenCode 即可
 
 ## 省 token 技巧
-- 关掉不用的 MCP（已关 FlowUs）
+- 关掉不用的 MCP
 - 复杂任务分流（用 Task tool 派子代理）
 - 不一次性读大文件，按需分段读
 - 会话太长开新会话，避免上下文膨胀
