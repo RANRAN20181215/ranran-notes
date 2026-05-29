@@ -1,0 +1,5 @@
+{
+  "plugin": [
+    "@cubocompany/opengem"
+  ]
+}

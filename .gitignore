@@ -19,3 +19,7 @@ public/
 
 # Generated plugin files
 *.ajson
+
+# Python
+__pycache__/
+*.pyc
